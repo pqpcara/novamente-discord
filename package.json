@@ -2,6 +2,11 @@
   "name": "novamente",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "build": "bun build --outdir=dist --target=node index.ts",
+    "dev": "bun run --watch index.ts",
+    "start": "bun run dist/index.js"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

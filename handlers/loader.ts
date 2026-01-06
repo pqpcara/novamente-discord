@@ -24,14 +24,16 @@ export class Loader {
         }
       }
 
+      if (this.client.slashCommands.size === 0) return;
+
       this.client.on("clientReady", async () => {
         for (const guild of this.client.guilds.cache.values()) {
-          await guild.commands.set([...this.client.slashCommands.values()]);
+          await guild.commands.set([...this.client.slashCommands.values()]).catch(() => null);
         }
       });
 
       this.client.on("guildCreate", async (guild: Guild) => {
-        await guild.commands.set([...this.client.slashCommands.values()])
+        await guild.commands.set([...this.client.slashCommands.values()]).catch(() => null);
       });
     } catch (error: any) {
       throw new Error(error.message || error);
